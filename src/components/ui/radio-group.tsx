@@ -43,12 +43,13 @@ interface RadioItemProps {
   checked: boolean
   onSelect: (value: string) => void
   letter?: string
+  className?: string
 }
 
-const RadioItem = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & RadioItemProps
->(({ className, value, label, checked, onSelect, letter, ...props }, ref) => {
+type RadioItemComponentProps = Omit<React.HTMLAttributes<HTMLDivElement>, "onClick" | "onSelect"> & RadioItemProps
+
+const RadioItem = React.forwardRef<HTMLDivElement, RadioItemComponentProps>(
+  ({ className, value, label, checked, onSelect, letter, ...props }, ref) => {
   const [isAnimating, setIsAnimating] = React.useState(false)
 
   React.useEffect(() => {
