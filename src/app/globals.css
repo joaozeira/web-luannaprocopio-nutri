@@ -1,26 +1,147 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Ravelle";
+  src: url("/fonts/ravelle-regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ravelle";
+  src: url("/fonts/ravelle-bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Cores Base - Paleta Principal */
+  --color-beige-light: #f0dcc8;
+  --color-beige-medium: #f5e3d2;
+  --color-beige-dark: #dbc5b1;
+  --color-beige-border: #e4cebd;
+  
+  /* Cores Base - Dourado/Amarelo */
+  --color-gold-light: #c8a364;
+  --color-gold-medium: #cca667;
+  --color-gold-dark: #80652d;
+  --color-gold-darker: #7e632b;
+  --color-gold-darkest: #43361a;
+  
+  /* Cores Base - Texto */
+  --color-text-primary: #261f1b;
+  --color-text-black: #000000;
+  --color-text-dark: #141414;
+  --color-text-white: #ffffff;
+  --color-text-light: #d9d9d9;
+  
+  /* Cores Base - Neutras */
+  --color-background-form: #ecd7c3;
+  --color-radio-checked-start: #dfc5a8;
+  --color-radio-checked-end: #d4b899;
+  --color-radio-unchecked-start: #f6e4d4;
+  --color-radio-unchecked-end: #f0dcc7;
+  
+  /* Cores Semânticas - Formulário */
+  --form-background: var(--color-background-form);
+  --form-text: var(--color-text-primary);
+  --form-border: var(--color-text-primary);
+  --form-progress: var(--color-text-primary);
+  --form-item-border: var(--color-beige-border);
+  
+  /* Cores Semânticas - Gradientes */
+  --gradient-hero-background: linear-gradient(to bottom, var(--color-beige-light), var(--color-beige-medium));
+  --gradient-hero-text: linear-gradient(to right, var(--color-gold-dark), var(--color-gold-light));
+  --gradient-hero-button: linear-gradient(to right, var(--color-gold-dark), var(--color-gold-light));
+  --gradient-section-background: linear-gradient(to right, var(--color-gold-dark), var(--color-gold-light));
+  --gradient-card-background: linear-gradient(to bottom, var(--color-beige-light), var(--color-beige-medium));
+  --gradient-button-mobile: linear-gradient(to right, var(--color-gold-darker), var(--color-gold-medium));
+  --gradient-button-desktop: linear-gradient(to right, var(--color-gold-darkest), var(--color-gold-medium));
+  --gradient-radio-checked: linear-gradient(to bottom, var(--color-radio-checked-start), var(--color-radio-checked-end));
+  --gradient-radio-unchecked: linear-gradient(to bottom, var(--color-radio-unchecked-start), var(--color-radio-unchecked-end));
+  --gradient-radio-circle: linear-gradient(to right, var(--color-gold-darkest), var(--color-gold-medium));
+  
+  /* Cores Semânticas - Sistema (compatibilidade) */
+  --background: var(--color-text-white);
+  --foreground: var(--color-text-primary);
+  --primary: var(--color-gold-medium);
+  --primary-foreground: var(--color-text-white);
+  --border: var(--color-beige-border);
+  --ring: var(--color-gold-medium);
 }
 
 @theme inline {
+  /* Cores Base para Tailwind */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  
+  /* Cores do Formulário para Tailwind */
+  --color-form-background: var(--form-background);
+  --color-form-text: var(--form-text);
+  --color-form-border: var(--form-border);
+  --color-form-progress: var(--form-progress);
+  --color-form-item-border: var(--form-item-border);
+  
+  /* Fontes */
+  --font-sans: "Zalando Sans Variable", sans-serif;
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-serif: "Ravelle", serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Zalando Sans Variable", sans-serif;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-200%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
 }
